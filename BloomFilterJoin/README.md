@@ -1,6 +1,6 @@
 # Bloom filter join
 
-This program performs a inner join operation on the input files given as first and second parameters. Output is written into third parameter folder.
+This program performs a inner join operation on the input files given as first and second parameters with the help of a bloof filter. Output is written into third parameter folder.
 
 **Example usage:**
 ```
