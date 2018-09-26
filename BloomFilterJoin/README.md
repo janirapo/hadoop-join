@@ -1,3 +1,8 @@
+# Bloom filter join
+
+This program performs a inner join operation on the input files given as first and second parameters. Output is written into third parameter folder.
+
+**Example usage:**
 ```
 javac BloomFilterJoin.java -cp $(hadoop classpath) -Xlint:deprecation
 jar cf bfj.jar BloomFilterJoin*.class
