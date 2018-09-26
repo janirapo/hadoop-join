@@ -68,8 +68,8 @@ public class BloomFilterJoin extends Configured implements Tool {
         private BufferedReader brReader;
 
         enum MYCOUNTER {
-    		RECORD_COUNT, FILE_EXISTS, FILE_NOT_FOUND, SOME_OTHER_ERROR
-    	}
+            RECORD_COUNT, FILE_EXISTS, FILE_NOT_FOUND, SOME_OTHER_ERROR
+        }
 
         @Override
         public void setup(Context context) throws IOException {
@@ -81,12 +81,12 @@ public class BloomFilterJoin extends Configured implements Tool {
             for (URI eachPath : files) {
                 context.getCounter(MYCOUNTER.FILE_EXISTS).increment(1);
                 loadScoresBloom(eachPath, context);
-    		}
+            }
         }
 
         private void loadScoresBloom(URI filePath, Context context) throws IOException {
 
-    		String strLineRead = "";
+            String strLineRead = "";
 
             try {
                 brReader = new BufferedReader(new FileReader(filePath.toString()));
@@ -107,19 +107,19 @@ public class BloomFilterJoin extends Configured implements Tool {
 
                     Key filterKey = new Key(deptFieldArray[0].trim().getBytes());
                     bfilter.add(filterKey);
-    			}
-    		} catch (FileNotFoundException e) {
-    			e.printStackTrace();
-    			context.getCounter(MYCOUNTER.FILE_NOT_FOUND).increment(1);
-    		} catch (IOException e) {
-    			context.getCounter(MYCOUNTER.SOME_OTHER_ERROR).increment(1);
-    			e.printStackTrace();
-    		}finally {
-    			if (brReader != null) {
-    				brReader.close();
-    			}
-    		}
-    	}
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                context.getCounter(MYCOUNTER.FILE_NOT_FOUND).increment(1);
+            } catch (IOException e) {
+                context.getCounter(MYCOUNTER.SOME_OTHER_ERROR).increment(1);
+                e.printStackTrace();
+            }finally {
+                if (brReader != null) {
+                    brReader.close();
+                }
+            }
+        }
 
         @Override
         public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
